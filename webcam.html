@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Emotion Detection</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-dark text-white">
+  <div class="container py-5">
+    <h2 class="text-center mb-4">🎥 Webcam Emotion Detection</h2>
+
+    <div class="row">
+      <!-- Webcam Feed -->
+      <div class="col-md-6 d-flex flex-column align-items-center">
+        <video id="webcam" autoplay playsinline width="100%" class="rounded shadow"></video>
+        <button id="captureBtn" class="btn btn-success mt-3">Capture Emotion</button>
+      </div>
+
+      <!-- Emotion + Songs -->
+      <div class="col-md-6">
+        <div class="card bg-secondary text-white shadow p-3">
+          <h4>Detected Emotion: <span id="emotion" class="text-warning">None</span></h4>
+          <hr>
+          <h5>Recommended Songs 🎶</h5>
+          <ul id="songList" class="list-group list-group-flush bg-secondary"></ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Show webcam stream
+    const webcam = document.getElementById("webcam");
+    navigator.mediaDevices.getUserMedia({ video: true })
+      .then(stream => webcam.srcObject = stream)
+      .catch(err => console.error("Error accessing webcam:", err));
+
+    // Later: Add fetch() to backend for capturing + emotion analysis
+    document.getElementById("captureBtn").addEventListener("click", () => {
+      alert("Here we will capture frame and send to backend for emotion detection.");
+    });
+  </script>
+</body>
+</html>
